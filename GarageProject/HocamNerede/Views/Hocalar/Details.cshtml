@@ -1,0 +1,43 @@
+﻿@model HocamNerede.tblHocalar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblHocalar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HocaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HocaSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocaSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HocaMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocaMail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HocaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

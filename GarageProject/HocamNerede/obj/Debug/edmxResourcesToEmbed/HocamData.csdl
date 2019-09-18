@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HocamNerdeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HocamNerdeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="poolBolumDers" EntityType="HocamNerdeModel.poolBolumDers" />
+    <EntitySet Name="poolFakulteBolum" EntityType="HocamNerdeModel.poolFakulteBolum" />
+    <EntitySet Name="poolOkulFakulte" EntityType="HocamNerdeModel.poolOkulFakulte" />
+    <EntitySet Name="tblAdminLogin" EntityType="HocamNerdeModel.tblAdminLogin" />
+    <EntitySet Name="tblBolumler" EntityType="HocamNerdeModel.tblBolumler" />
+    <EntitySet Name="tblDersler" EntityType="HocamNerdeModel.tblDersler" />
+    <EntitySet Name="tblFakulteler" EntityType="HocamNerdeModel.tblFakulteler" />
+    <EntitySet Name="tblGunler" EntityType="HocamNerdeModel.tblGunler" />
+    <EntitySet Name="tblHocalar" EntityType="HocamNerdeModel.tblHocalar" />
+    <EntitySet Name="tblHvz" EntityType="HocamNerdeModel.tblHvz" />
+    <EntitySet Name="tblOkullar" EntityType="HocamNerdeModel.tblOkullar" />
+    <AssociationSet Name="FK_poolBolumDers_poolFakulteBolum" Association="HocamNerdeModel.FK_poolBolumDers_poolFakulteBolum">
+      <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+      <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolBolumDers_tblDersler" Association="HocamNerdeModel.FK_poolBolumDers_tblDersler">
+      <End Role="tblDersler" EntitySet="tblDersler" />
+      <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolBolumDers_tblHocalar" Association="HocamNerdeModel.FK_poolBolumDers_tblHocalar">
+      <End Role="tblHocalar" EntitySet="tblHocalar" />
+      <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblHvz_poolBolumDers" Association="HocamNerdeModel.FK_tblHvz_poolBolumDers">
+      <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+      <End Role="tblHvz" EntitySet="tblHvz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolFakulteBolum_poolOkulFakulte" Association="HocamNerdeModel.FK_poolFakulteBolum_poolOkulFakulte">
+      <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+      <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolFakulteBolum_tblBolumler" Association="HocamNerdeModel.FK_poolFakulteBolum_tblBolumler">
+      <End Role="tblBolumler" EntitySet="tblBolumler" />
+      <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolOkulFakulte_tblFakulteler" Association="HocamNerdeModel.FK_poolOkulFakulte_tblFakulteler">
+      <End Role="tblFakulteler" EntitySet="tblFakulteler" />
+      <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_poolOkulFakulte_tblOkullar" Association="HocamNerdeModel.FK_poolOkulFakulte_tblOkullar">
+      <End Role="tblOkullar" EntitySet="tblOkullar" />
+      <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblHvz_tblGunler" Association="HocamNerdeModel.FK_tblHvz_tblGunler">
+      <End Role="tblGunler" EntitySet="tblGunler" />
+      <End Role="tblHvz" EntitySet="tblHvz" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="poolBolumDers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FpoolfakultebolumID" Type="Int32" Nullable="false" />
+    <Property Name="FDersID" Type="Int32" Nullable="false" />
+    <Property Name="Sınıf" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VideoUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FHocaID" Type="Int32" />
+    <NavigationProperty Name="poolFakulteBolum" Relationship="HocamNerdeModel.FK_poolBolumDers_poolFakulteBolum" FromRole="poolBolumDers" ToRole="poolFakulteBolum" />
+    <NavigationProperty Name="tblDersler" Relationship="HocamNerdeModel.FK_poolBolumDers_tblDersler" FromRole="poolBolumDers" ToRole="tblDersler" />
+    <NavigationProperty Name="tblHocalar" Relationship="HocamNerdeModel.FK_poolBolumDers_tblHocalar" FromRole="poolBolumDers" ToRole="tblHocalar" />
+    <NavigationProperty Name="tblHvz" Relationship="HocamNerdeModel.FK_tblHvz_poolBolumDers" FromRole="poolBolumDers" ToRole="tblHvz" />
+  </EntityType>
+  <EntityType Name="poolFakulteBolum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FpoolokulfalulteID" Type="Int32" Nullable="false" />
+    <Property Name="FBolumID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="poolBolumDers" Relationship="HocamNerdeModel.FK_poolBolumDers_poolFakulteBolum" FromRole="poolFakulteBolum" ToRole="poolBolumDers" />
+    <NavigationProperty Name="poolOkulFakulte" Relationship="HocamNerdeModel.FK_poolFakulteBolum_poolOkulFakulte" FromRole="poolFakulteBolum" ToRole="poolOkulFakulte" />
+    <NavigationProperty Name="tblBolumler" Relationship="HocamNerdeModel.FK_poolFakulteBolum_tblBolumler" FromRole="poolFakulteBolum" ToRole="tblBolumler" />
+  </EntityType>
+  <EntityType Name="poolOkulFakulte">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FFakulteID" Type="Int32" Nullable="false" />
+    <Property Name="FOkulID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="poolFakulteBolum" Relationship="HocamNerdeModel.FK_poolFakulteBolum_poolOkulFakulte" FromRole="poolOkulFakulte" ToRole="poolFakulteBolum" />
+    <NavigationProperty Name="tblFakulteler" Relationship="HocamNerdeModel.FK_poolOkulFakulte_tblFakulteler" FromRole="poolOkulFakulte" ToRole="tblFakulteler" />
+    <NavigationProperty Name="tblOkullar" Relationship="HocamNerdeModel.FK_poolOkulFakulte_tblOkullar" FromRole="poolOkulFakulte" ToRole="tblOkullar" />
+  </EntityType>
+  <EntityType Name="tblAdminLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblBolumler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="poolFakulteBolum" Relationship="HocamNerdeModel.FK_poolFakulteBolum_tblBolumler" FromRole="tblBolumler" ToRole="poolFakulteBolum" />
+  </EntityType>
+  <EntityType Name="tblDersler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="poolBolumDers" Relationship="HocamNerdeModel.FK_poolBolumDers_tblDersler" FromRole="tblDersler" ToRole="poolBolumDers" />
+  </EntityType>
+  <EntityType Name="tblFakulteler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="poolOkulFakulte" Relationship="HocamNerdeModel.FK_poolOkulFakulte_tblFakulteler" FromRole="tblFakulteler" ToRole="poolOkulFakulte" />
+  </EntityType>
+  <EntityType Name="tblGunler">
+    <Key>
+      <PropertyRef Name="GunlerID" />
+    </Key>
+    <Property Name="GunlerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gunler" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblHvz" Relationship="HocamNerdeModel.FK_tblHvz_tblGunler" FromRole="tblGunler" ToRole="tblHvz" />
+  </EntityType>
+  <EntityType Name="tblHocalar">
+    <Key>
+      <PropertyRef Name="HocaID" />
+    </Key>
+    <Property Name="HocaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HocaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HocaSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HocaMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="poolBolumDers" Relationship="HocamNerdeModel.FK_poolBolumDers_tblHocalar" FromRole="tblHocalar" ToRole="poolBolumDers" />
+  </EntityType>
+  <EntityType Name="tblHvz">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FGunID" Type="Int32" Nullable="false" />
+    <Property Name="BaslangicSaati" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="FpoolBolumdersID" Type="Int32" />
+    <Property Name="BitisSaati" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="poolBolumDers" Relationship="HocamNerdeModel.FK_tblHvz_poolBolumDers" FromRole="tblHvz" ToRole="poolBolumDers" />
+    <NavigationProperty Name="tblGunler" Relationship="HocamNerdeModel.FK_tblHvz_tblGunler" FromRole="tblHvz" ToRole="tblGunler" />
+  </EntityType>
+  <EntityType Name="tblOkullar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OkulName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="poolOkulFakulte" Relationship="HocamNerdeModel.FK_poolOkulFakulte_tblOkullar" FromRole="tblOkullar" ToRole="poolOkulFakulte" />
+  </EntityType>
+  <Association Name="FK_poolBolumDers_poolFakulteBolum">
+    <End Type="HocamNerdeModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="poolFakulteBolum">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolBolumDers">
+        <PropertyRef Name="FpoolfakultebolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolBolumDers_tblDersler">
+    <End Type="HocamNerdeModel.tblDersler" Role="tblDersler" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDersler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolBolumDers">
+        <PropertyRef Name="FDersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolBolumDers_tblHocalar">
+    <End Type="HocamNerdeModel.tblHocalar" Role="tblHocalar" Multiplicity="0..1" />
+    <End Type="HocamNerdeModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHocalar">
+        <PropertyRef Name="HocaID" />
+      </Principal>
+      <Dependent Role="poolBolumDers">
+        <PropertyRef Name="FHocaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblHvz_poolBolumDers">
+    <End Type="HocamNerdeModel.poolBolumDers" Role="poolBolumDers" Multiplicity="0..1" />
+    <End Type="HocamNerdeModel.tblHvz" Role="tblHvz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="poolBolumDers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblHvz">
+        <PropertyRef Name="FpoolBolumdersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolFakulteBolum_poolOkulFakulte">
+    <End Type="HocamNerdeModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="poolOkulFakulte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolFakulteBolum">
+        <PropertyRef Name="FpoolokulfalulteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolFakulteBolum_tblBolumler">
+    <End Type="HocamNerdeModel.tblBolumler" Role="tblBolumler" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBolumler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolFakulteBolum">
+        <PropertyRef Name="FBolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolOkulFakulte_tblFakulteler">
+    <End Type="HocamNerdeModel.tblFakulteler" Role="tblFakulteler" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFakulteler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolOkulFakulte">
+        <PropertyRef Name="FFakulteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_poolOkulFakulte_tblOkullar">
+    <End Type="HocamNerdeModel.tblOkullar" Role="tblOkullar" Multiplicity="1" />
+    <End Type="HocamNerdeModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOkullar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="poolOkulFakulte">
+        <PropertyRef Name="FOkulID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblHvz_tblGunler">
+    <End Type="HocamNerdeModel.tblGunler" Role="tblGunler" Multiplicity="1" />
+    <End Type="HocamNerdeModel.tblHvz" Role="tblHvz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGunler">
+        <PropertyRef Name="GunlerID" />
+      </Principal>
+      <Dependent Role="tblHvz">
+        <PropertyRef Name="FGunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

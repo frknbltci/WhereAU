@@ -1,0 +1,62 @@
+﻿@model DersinDetayViewModel
+
+@{
+	ViewBag.Title = "DersinDetayı";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<b> @Model.DersName </b>
+<h2>Dersinin Detayı</h2>
+
+
+
+<div>
+	@using (Html.BeginForm())
+	{
+
+		<b>Begin</b><input type="time" id="appt1" name="Begin" min="08:00" max="22:00" required>
+
+		<b>End</b><input type="time" id="appt" name="End" min="08:00" max="22:00" required>
+		<b> @Html.Hidden($"{Model.Id}") </b>
+		  @Html.DropDownListFor(m => m.DayId, Model.DayList);
+
+
+		<input type="submit" name="ekleSaat" value="Ekle" />
+	}
+
+	
+	<hr />
+
+
+
+	<table class="table table-bordered">
+
+		<tr>
+			<th>Gün  </th>	
+			<th>Dersin Saati  </th>
+			
+			<th>İşlem</th>
+		</tr>
+		<tbody>
+
+
+			@foreach(var item in Model.DersDayList)
+			{
+				<tr>
+					<th>@item.GunName</th>
+					<th><h6>Başlangıç :</h6>@item.BaslangicSaati <br /> <h6>Bitiş :</h6> @item.BitisSaati</th>
+					<td>
+						@Html.ActionLink("Sil", "SilDers", new { id = item.ID },new { @class="btn btn-danger btn-xm" }) |
+					</td>
+
+
+				</tr>
+
+			}
+
+		</tbody>
+	</table>
+
+</div>
+

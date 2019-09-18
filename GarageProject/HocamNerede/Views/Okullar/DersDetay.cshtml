@@ -1,0 +1,70 @@
+﻿@model DersViewModel
+
+@{
+	ViewBag.Title = "DersDetay";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DersDetay</h2>
+
+<h4>
+
+	@Html.DisplayNameFor(m => m.BolumName)
+
+</h4>
+
+
+<div>
+	@using (Html.BeginForm())
+	{
+
+		@Html.HiddenFor(m => m.BolumId)
+		@Html.DropDownListFor(m => m.DersId, Model.Dersler)
+		@Html.DropDownListFor(m => m.HocaId, Model.Hocalar)
+		<b>Sınıf</b>@Html.EditorFor(x => x.Sınıf)
+		<b>Video</b>@Html.EditorFor(x => x.VideoUrl)
+
+		<input type="submit" name="ekleDers" value="Ekle" />
+	}
+
+	<hr />
+
+
+
+	<table class="table table-bordered">
+
+		<tr>
+			<th>Ders Name  </th>
+			<th>Hoca Name  </th>
+			<th>Dersin Sınıfı  </th>
+			<th>İşlem</th>
+		</tr>
+		<tbody>
+
+
+
+			@foreach (var item in Model.Dersleri)
+			{
+				<tr>
+					<th>@item.DersName</th>
+					<th>@item.HocaName</th>
+					<th>@item.Sınıf</th>
+					<th>@item.VideoUrl</th>
+
+
+					<td>
+						@Html.ActionLink("Sil", "SilDers", new { id = item.Id }) |
+
+						@Html.ActionLink("Detaylar", "DersinDetayı", new { id = item.Id })
+					</td>
+
+
+				</tr>
+
+			}
+
+		</tbody>
+	</table>
+
+</div>
+

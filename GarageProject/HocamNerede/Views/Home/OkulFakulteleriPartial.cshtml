@@ -1,0 +1,19 @@
+﻿@model HomePageViewModel
+
+
+
+
+@using (Ajax.BeginForm("Fakulte", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divsonuc2" }))
+{
+	<div>
+		<br />
+
+		@Html.DropDownListFor(m => m.FakulteId, Model.Fakulteleri ?? new List<SelectListItem>(), "Seçiniz")
+		<input type="submit" value="Seç" name="PartialSelect" />
+
+	</div>
+
+
+}
+
+

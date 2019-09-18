@@ -1,0 +1,48 @@
+﻿@model UniversityViewModel
+@*  @model IEnumerable<tblOkullar>*@
+
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Düzenlenecek*@
+
+	@Html.DropDownListFor(s =>s.UniId,Model.UniversiteList)
+	<br /> <br />
+	@Html.DropDownListFor(s => s.FakulteId, Model.FakulteList)
+
+
+@section scripts 
+	{
+	 <script type="text/javascript">
+		 $(document).ready(function () {
+			 $("#UniversiteId").change(function () {
+				 var id = $(this).val();
+		 @*AŞAĞIDAKİ POST İŞLEMİ YAPILMIYOR*@
+				 var fakulteList = $("#FakulteId");
+				 $.ajax({
+					 url: '/Home/FakulteList',
+					 type: 'POST',
+					 dataType: 'json',
+					 data: { 'id': id },
+					 success: function (data) {
+						 $.each(data, function (index, option) {
+							 
+							 fakulteList.append('<option value=' + option.Value + '>' + option.Text + ' </option>');
+
+						 });
+					 }
+				 });
+			 });
+
+		 });
+
+	 </script>
+	
+	}
+
+
+
+

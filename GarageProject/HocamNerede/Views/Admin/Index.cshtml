@@ -1,0 +1,42 @@
+﻿@model LoginModel
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<h2> Admin Panel Yönetimi</h2>
+
+
+
+<div class="box">
+
+	<div class="notification tip"><span class="strong"></span>@Html.ValidationSummary(false, "")</div>
+
+	@using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+	{
+		<div class="form col">
+
+			@Html.LabelFor(f => f.UserName)
+			@Html.TextBoxFor(s => s.UserName)
+			@Html.ValidationMessageFor(m => m.UserName)
+
+			<br />
+
+			@Html.LabelFor(f => f.Password)
+			@Html.PasswordFor(f => f.Password)
+			@Html.ValidationMessageFor(m => m.Password)
+			<br />
+
+			<button type="submit" class="small fr">Giriş</button><br class="cl" />
+
+
+		</div>
+
+	}
+</div>
+
+
+

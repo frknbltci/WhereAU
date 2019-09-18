@@ -1,0 +1,26 @@
+﻿@model tblDersModel
+@{
+	ViewBag.Title = "Dersler";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dersler</h2>
+@using (Html.BeginForm("Dersler", "Ders", new { id = Model.BolumId }, FormMethod.Post))
+{
+	@Html.DropDownListFor(s => s.BolumId, Model.BolumList ?? new List<SelectListItem>(), "Bolum Sec")
+
+
+	@*Bolum Listesinden Id çekemedim ? Nasıl Çekerim*@
+
+	<input type="submit" value="Sec" />
+
+
+	@Html.DropDownListFor(s => s.DersId, Model.DersList ?? new List<SelectListItem>(), "Ders Sec")
+	@*Enumarable hatası alındı burda yukarıdaki kod sorunu çözdü.*@
+
+
+
+
+}
+@*<div id="render"></div>  *@
+

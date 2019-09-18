@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc36e551debe41b99b1a9275eccd29ae" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="WhereAUModel.poolBolumDers" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="WhereAUModel.poolFakulteBolum" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="WhereAUModel.poolOkulFakulte" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="WhereAUModel.tblAdminLogin" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WhereAUModel.tblBolumler" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="WhereAUModel.tblDersler" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="WhereAUModel.tblFakulteler" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="WhereAUModel.tblGunler" Width="1.5" PointX="7.5" PointY="5.625" />
+        <EntityTypeShape EntityType="WhereAUModel.tblHocalar" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="WhereAUModel.tblHvz" Width="1.5" PointX="9.75" PointY="1.25" />
+        <EntityTypeShape EntityType="WhereAUModel.tblOkullar" Width="1.5" PointX="0.75" PointY="1.625" />
+        <AssociationConnector Association="WhereAUModel.FK_poolBolumDers_poolFakulteBolum" />
+        <AssociationConnector Association="WhereAUModel.FK_poolBolumDers_tblDersler" />
+        <AssociationConnector Association="WhereAUModel.FK_poolBolumDers_tblHocalar" />
+        <AssociationConnector Association="WhereAUModel.FK_tblHvz_poolBolumDers" />
+        <AssociationConnector Association="WhereAUModel.FK_poolFakulteBolum_poolOkulFakulte" />
+        <AssociationConnector Association="WhereAUModel.FK_poolFakulteBolum_tblBolumler" />
+        <AssociationConnector Association="WhereAUModel.FK_poolOkulFakulte_tblFakulteler" />
+        <AssociationConnector Association="WhereAUModel.FK_poolOkulFakulte_tblOkullar" />
+        <AssociationConnector Association="WhereAUModel.FK_tblHvz_tblGunler" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

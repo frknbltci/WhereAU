@@ -1,0 +1,37 @@
+﻿@model BolumViewModel
+
+@{
+	ViewBag.Title = "FakulteDetay";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bolum Detayı</h2>
+
+
+<h2>@Model.FakulteName </h2>
+@using (Html.BeginForm())
+{
+	
+	@Html.HiddenFor(m => m.FakulteId)
+	@Html.DropDownListFor(m =>m.BolumId, Model.Bolumler)
+	<input type="submit"  value="Ekle" />
+}
+
+<table class="table">
+
+
+	@foreach (var item in Model.Bolumleri)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Name)
+			</td>
+			<td>
+				@Html.ActionLink("Sil", "SilBolum", new { id = item.Id }) |
+				@Html.ActionLink("Detaylar", "DersDetay", new { id = item.Id })
+
+			</td>
+		</tr>
+	}
+
+</table>

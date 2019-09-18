@@ -1,0 +1,36 @@
+﻿@model poolOkulFakulteViewModel
+@{
+	ViewBag.Title = "Getir";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Getir</h2>
+
+<div>
+
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th scope="col">Fakülteler</th>
+				<th scope="col">İşlem</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model.OkulunFakulteleriList)
+			{
+				<tr>
+
+					<td>@item.Text</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit") |
+						@Html.ActionLink("Details", "Details") |
+						@Html.ActionLink("Delete", "Delete")
+					</td>
+				</tr>
+				<tr></tr>
+			}
+		</tbody>
+	</table>
+
+</div>
+

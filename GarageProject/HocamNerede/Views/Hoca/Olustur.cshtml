@@ -1,0 +1,39 @@
+﻿@model HocamNerede.tblHocalar
+@{
+	ViewBag.Title = "Olustur";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Olusturma Sayfası</h2>
+
+@using (Html.BeginForm())
+{
+	<div>
+		@Html.LabelFor(x => x.HocaName, htmlAttributes: new { @class = "control-label col-md-2" })
+
+		@Html.EditorFor(model => model.HocaName, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.HocaName, "", new { @class = "text-danger" })
+	</div>
+	<br />
+	<div>
+		@Html.LabelFor(x => x.HocaSurname, htmlAttributes: new { @class = "control-label col-md-2" })
+
+		@Html.EditorFor(model => model.HocaSurname, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.HocaSurname, "", new { @class = "text-danger" })
+	</div>
+	<br />
+	<div>
+		@Html.LabelFor(x => x.HocaMail, htmlAttributes: new { @class = "control-label col-md-2" })
+
+		@Html.EditorFor(model => model.HocaMail, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(model => model.HocaMail, "", new { @class = "text-danger" })
+	</div>
+	<br />
+	<input type="submit" value="Olustur" class="bs-tooltip-right" />
+	<br />
+	<br />
+	<div>
+		@Html.ActionLink("Geri", "Index")
+	</div>
+
+}

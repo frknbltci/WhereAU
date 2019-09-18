@@ -1,0 +1,48 @@
+﻿@model HomePageViewModel
+
+@{
+	ViewBag.Title = "Anasayfa";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Anasayfa</h2>
+
+
+<div>
+	@Html.DisplayFor(x => x.SelectedUniId)
+</div>
+
+
+@using (Ajax.BeginForm("Anasayfa", new AjaxOptions {  HttpMethod = "POST", UpdateTargetId = "divsonuc" }))
+{
+	<div style="text-align:right">
+
+		@Html.DropDownListFor(m => m.SelectedUniId, Model.Universiteler)
+
+		<input type="submit" value="Seç" />
+
+	</div>
+
+}
+<br />
+
+	<div id="divsonuc" style="text-align:right">
+
+		
+
+	</div>
+<br />
+
+	<div id="divsonuc2" style="text-align:right">
+
+
+
+	</div>
+
+
+
+
+
+
+
+

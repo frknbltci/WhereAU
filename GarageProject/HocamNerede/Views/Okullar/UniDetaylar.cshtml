@@ -1,0 +1,56 @@
+﻿@model  FakulteViewModel
+@{
+	ViewBag.Title = "FakulteDetaylar";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FakulteDetayları</h2>
+
+<h4>
+
+	@Html.DisplayNameFor(m => m.UniName)
+
+</h4>
+<div>
+
+	@using (Html.BeginForm())
+	{
+
+		@Html.HiddenFor(m => m.UniId)
+		@Html.DropDownListFor(m => m.FakulteId, Model.Fakulteler)
+		<input type="submit" name="ekleFakulte" value="Ekle" />
+	}
+
+	<hr />
+
+
+
+	<table class="table table-bordered">
+
+		<tr>
+			<th>Fakültenin Bölümleri  </th>
+			<th>İşlem</th>
+		</tr>
+		<tbody>
+
+
+
+			@foreach (var item in Model.Fakuteleri)
+			{
+				<tr>
+					<th>@item.Name</th>
+					<td>
+						@Html.ActionLink("Sil", "silFakulte", new { id = item.Id })
+					   |
+						@Html.ActionLink("Detaylar", "FakulteDetay", new { id = item.Id })
+					</td>
+
+
+				</tr>
+
+			}
+
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,65 @@
+﻿@model OkulViewModel
+	
+	
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>
+		tblOkullar
+	</h4>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(m => m.OkulId)
+		@Html.DropDownListFor(m => m.FakulteId, Model.FakultelerItems)
+		@Html.ValidationMessageFor(m => m.FakulteId)
+		<input type="submit" name="ekleFakulte" value="Ekle" />
+	}
+
+
+
+
+
+	<hr />
+
+	<dt>
+		@Html.DisplayNameFor(m => m.OkulName)
+	</dt>
+
+	<table class="table table-bordered">
+
+		<tr>
+			<th>Okulun Fakülteleri  </th>
+			<th>İşlem</th>
+		</tr>
+		<tbody>
+
+
+
+			@foreach (var item in Model.OkulFakulteleri)
+			{
+			<tr>
+				<th>@item.Name</th>
+				<td>
+					@Html.ActionLink("Sil","SilFakulte","Okullar",routeValues:
+				   new{
+				     id= item.Id
+				
+					},htmlAttributes: null)
+				</td>
+			
+			</tr>
+				
+			}
+
+		</tbody>
+	</table>
+
+</div>
+

@@ -1,0 +1,10 @@
+﻿@model HomePageViewModel
+
+
+<div>
+	@Html.DropDownListFor(x => x.BolumId, Model.Bolumleri ?? new List<SelectListItem>(), "Bölüm Seçiniz")
+	<br />
+	<input type="submit" value="Getir" name="getirH" />
+	@*submit postunu yap hocalar gelecek*@
+</div>
+

@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WhereAUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="poolBolumDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FpoolfakultebolumID" Type="int" Nullable="false" />
+          <Property Name="FDersID" Type="int" Nullable="false" />
+          <Property Name="Sınıf" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="VideoUrl" Type="varchar" MaxLength="200" />
+          <Property Name="FHocaID" Type="int" />
+        </EntityType>
+        <EntityType Name="poolFakulteBolum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FpoolokulfalulteID" Type="int" Nullable="false" />
+          <Property Name="FBolumID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="poolOkulFakulte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FFakulteID" Type="int" Nullable="false" />
+          <Property Name="FOkulID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAdminLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciAdi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBolumler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDersler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFakulteler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGunler">
+          <Key>
+            <PropertyRef Name="GunlerID" />
+          </Key>
+          <Property Name="GunlerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gunler" Type="nvarchar" MaxLength="13" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHocalar">
+          <Key>
+            <PropertyRef Name="HocaID" />
+          </Key>
+          <Property Name="HocaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HocaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HocaSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HocaMail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblHvz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FGunID" Type="int" Nullable="false" />
+          <Property Name="BaslangicSaati" Type="time" Precision="7" Nullable="false" />
+          <Property Name="FpoolBolumdersID" Type="int" />
+          <Property Name="BitisSaati" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOkullar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OkulName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_poolBolumDers_poolFakulteBolum">
+          <End Role="poolFakulteBolum" Type="Self.poolFakulteBolum" Multiplicity="1" />
+          <End Role="poolBolumDers" Type="Self.poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolFakulteBolum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FpoolfakultebolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolBolumDers_tblDersler">
+          <End Role="tblDersler" Type="Self.tblDersler" Multiplicity="1" />
+          <End Role="poolBolumDers" Type="Self.poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDersler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FDersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolBolumDers_tblHocalar">
+          <End Role="tblHocalar" Type="Self.tblHocalar" Multiplicity="0..1" />
+          <End Role="poolBolumDers" Type="Self.poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHocalar">
+              <PropertyRef Name="HocaID" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FHocaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolFakulteBolum_poolOkulFakulte">
+          <End Role="poolOkulFakulte" Type="Self.poolOkulFakulte" Multiplicity="1" />
+          <End Role="poolFakulteBolum" Type="Self.poolFakulteBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolOkulFakulte">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolFakulteBolum">
+              <PropertyRef Name="FpoolokulfalulteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolFakulteBolum_tblBolumler">
+          <End Role="tblBolumler" Type="Self.tblBolumler" Multiplicity="1" />
+          <End Role="poolFakulteBolum" Type="Self.poolFakulteBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolumler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolFakulteBolum">
+              <PropertyRef Name="FBolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolOkulFakulte_tblFakulteler">
+          <End Role="tblFakulteler" Type="Self.tblFakulteler" Multiplicity="1" />
+          <End Role="poolOkulFakulte" Type="Self.poolOkulFakulte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulteler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolOkulFakulte">
+              <PropertyRef Name="FFakulteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolOkulFakulte_tblOkullar">
+          <End Role="tblOkullar" Type="Self.tblOkullar" Multiplicity="1" />
+          <End Role="poolOkulFakulte" Type="Self.poolOkulFakulte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOkullar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolOkulFakulte">
+              <PropertyRef Name="FOkulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHvz_poolBolumDers">
+          <End Role="poolBolumDers" Type="Self.poolBolumDers" Multiplicity="0..1" />
+          <End Role="tblHvz" Type="Self.tblHvz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolBolumDers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHvz">
+              <PropertyRef Name="FpoolBolumdersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHvz_tblGunler">
+          <End Role="tblGunler" Type="Self.tblGunler" Multiplicity="1" />
+          <End Role="tblHvz" Type="Self.tblHvz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGunler">
+              <PropertyRef Name="GunlerID" />
+            </Principal>
+            <Dependent Role="tblHvz">
+              <PropertyRef Name="FGunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WhereAUModelStoreContainer">
+          <EntitySet Name="poolBolumDers" EntityType="Self.poolBolumDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="poolFakulteBolum" EntityType="Self.poolFakulteBolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="poolOkulFakulte" EntityType="Self.poolOkulFakulte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdminLogin" EntityType="Self.tblAdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBolumler" EntityType="Self.tblBolumler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDersler" EntityType="Self.tblDersler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFakulteler" EntityType="Self.tblFakulteler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGunler" EntityType="Self.tblGunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHocalar" EntityType="Self.tblHocalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHvz" EntityType="Self.tblHvz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOkullar" EntityType="Self.tblOkullar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_poolBolumDers_poolFakulteBolum" Association="Self.FK_poolBolumDers_poolFakulteBolum">
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolBolumDers_tblDersler" Association="Self.FK_poolBolumDers_tblDersler">
+            <End Role="tblDersler" EntitySet="tblDersler" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolBolumDers_tblHocalar" Association="Self.FK_poolBolumDers_tblHocalar">
+            <End Role="tblHocalar" EntitySet="tblHocalar" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolFakulteBolum_poolOkulFakulte" Association="Self.FK_poolFakulteBolum_poolOkulFakulte">
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolFakulteBolum_tblBolumler" Association="Self.FK_poolFakulteBolum_tblBolumler">
+            <End Role="tblBolumler" EntitySet="tblBolumler" />
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolOkulFakulte_tblFakulteler" Association="Self.FK_poolOkulFakulte_tblFakulteler">
+            <End Role="tblFakulteler" EntitySet="tblFakulteler" />
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolOkulFakulte_tblOkullar" Association="Self.FK_poolOkulFakulte_tblOkullar">
+            <End Role="tblOkullar" EntitySet="tblOkullar" />
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHvz_poolBolumDers" Association="Self.FK_tblHvz_poolBolumDers">
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+            <End Role="tblHvz" EntitySet="tblHvz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHvz_tblGunler" Association="Self.FK_tblHvz_tblGunler">
+            <End Role="tblGunler" EntitySet="tblGunler" />
+            <End Role="tblHvz" EntitySet="tblHvz" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WhereAUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WhereAUEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="poolBolumDers" EntityType="WhereAUModel.poolBolumDers" />
+          <EntitySet Name="poolFakulteBolum" EntityType="WhereAUModel.poolFakulteBolum" />
+          <EntitySet Name="poolOkulFakulte" EntityType="WhereAUModel.poolOkulFakulte" />
+          <EntitySet Name="tblAdminLogin" EntityType="WhereAUModel.tblAdminLogin" />
+          <EntitySet Name="tblBolumler" EntityType="WhereAUModel.tblBolumler" />
+          <EntitySet Name="tblDersler" EntityType="WhereAUModel.tblDersler" />
+          <EntitySet Name="tblFakulteler" EntityType="WhereAUModel.tblFakulteler" />
+          <EntitySet Name="tblGunler" EntityType="WhereAUModel.tblGunler" />
+          <EntitySet Name="tblHocalar" EntityType="WhereAUModel.tblHocalar" />
+          <EntitySet Name="tblHvz" EntityType="WhereAUModel.tblHvz" />
+          <EntitySet Name="tblOkullar" EntityType="WhereAUModel.tblOkullar" />
+          <AssociationSet Name="FK_poolBolumDers_poolFakulteBolum" Association="WhereAUModel.FK_poolBolumDers_poolFakulteBolum">
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolBolumDers_tblDersler" Association="WhereAUModel.FK_poolBolumDers_tblDersler">
+            <End Role="tblDersler" EntitySet="tblDersler" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolBolumDers_tblHocalar" Association="WhereAUModel.FK_poolBolumDers_tblHocalar">
+            <End Role="tblHocalar" EntitySet="tblHocalar" />
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHvz_poolBolumDers" Association="WhereAUModel.FK_tblHvz_poolBolumDers">
+            <End Role="poolBolumDers" EntitySet="poolBolumDers" />
+            <End Role="tblHvz" EntitySet="tblHvz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolFakulteBolum_poolOkulFakulte" Association="WhereAUModel.FK_poolFakulteBolum_poolOkulFakulte">
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolFakulteBolum_tblBolumler" Association="WhereAUModel.FK_poolFakulteBolum_tblBolumler">
+            <End Role="tblBolumler" EntitySet="tblBolumler" />
+            <End Role="poolFakulteBolum" EntitySet="poolFakulteBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolOkulFakulte_tblFakulteler" Association="WhereAUModel.FK_poolOkulFakulte_tblFakulteler">
+            <End Role="tblFakulteler" EntitySet="tblFakulteler" />
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poolOkulFakulte_tblOkullar" Association="WhereAUModel.FK_poolOkulFakulte_tblOkullar">
+            <End Role="tblOkullar" EntitySet="tblOkullar" />
+            <End Role="poolOkulFakulte" EntitySet="poolOkulFakulte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHvz_tblGunler" Association="WhereAUModel.FK_tblHvz_tblGunler">
+            <End Role="tblGunler" EntitySet="tblGunler" />
+            <End Role="tblHvz" EntitySet="tblHvz" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="poolBolumDers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FpoolfakultebolumID" Type="Int32" Nullable="false" />
+          <Property Name="FDersID" Type="Int32" Nullable="false" />
+          <Property Name="Sınıf" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VideoUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FHocaID" Type="Int32" />
+          <NavigationProperty Name="poolFakulteBolum" Relationship="WhereAUModel.FK_poolBolumDers_poolFakulteBolum" FromRole="poolBolumDers" ToRole="poolFakulteBolum" />
+          <NavigationProperty Name="tblDersler" Relationship="WhereAUModel.FK_poolBolumDers_tblDersler" FromRole="poolBolumDers" ToRole="tblDersler" />
+          <NavigationProperty Name="tblHocalar" Relationship="WhereAUModel.FK_poolBolumDers_tblHocalar" FromRole="poolBolumDers" ToRole="tblHocalar" />
+          <NavigationProperty Name="tblHvz" Relationship="WhereAUModel.FK_tblHvz_poolBolumDers" FromRole="poolBolumDers" ToRole="tblHvz" />
+        </EntityType>
+        <EntityType Name="poolFakulteBolum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FpoolokulfalulteID" Type="Int32" Nullable="false" />
+          <Property Name="FBolumID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="poolBolumDers" Relationship="WhereAUModel.FK_poolBolumDers_poolFakulteBolum" FromRole="poolFakulteBolum" ToRole="poolBolumDers" />
+          <NavigationProperty Name="poolOkulFakulte" Relationship="WhereAUModel.FK_poolFakulteBolum_poolOkulFakulte" FromRole="poolFakulteBolum" ToRole="poolOkulFakulte" />
+          <NavigationProperty Name="tblBolumler" Relationship="WhereAUModel.FK_poolFakulteBolum_tblBolumler" FromRole="poolFakulteBolum" ToRole="tblBolumler" />
+        </EntityType>
+        <EntityType Name="poolOkulFakulte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FFakulteID" Type="Int32" Nullable="false" />
+          <Property Name="FOkulID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="poolFakulteBolum" Relationship="WhereAUModel.FK_poolFakulteBolum_poolOkulFakulte" FromRole="poolOkulFakulte" ToRole="poolFakulteBolum" />
+          <NavigationProperty Name="tblFakulteler" Relationship="WhereAUModel.FK_poolOkulFakulte_tblFakulteler" FromRole="poolOkulFakulte" ToRole="tblFakulteler" />
+          <NavigationProperty Name="tblOkullar" Relationship="WhereAUModel.FK_poolOkulFakulte_tblOkullar" FromRole="poolOkulFakulte" ToRole="tblOkullar" />
+        </EntityType>
+        <EntityType Name="tblAdminLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblBolumler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="poolFakulteBolum" Relationship="WhereAUModel.FK_poolFakulteBolum_tblBolumler" FromRole="tblBolumler" ToRole="poolFakulteBolum" />
+        </EntityType>
+        <EntityType Name="tblDersler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="poolBolumDers" Relationship="WhereAUModel.FK_poolBolumDers_tblDersler" FromRole="tblDersler" ToRole="poolBolumDers" />
+        </EntityType>
+        <EntityType Name="tblFakulteler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="poolOkulFakulte" Relationship="WhereAUModel.FK_poolOkulFakulte_tblFakulteler" FromRole="tblFakulteler" ToRole="poolOkulFakulte" />
+        </EntityType>
+        <EntityType Name="tblGunler">
+          <Key>
+            <PropertyRef Name="GunlerID" />
+          </Key>
+          <Property Name="GunlerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gunler" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblHvz" Relationship="WhereAUModel.FK_tblHvz_tblGunler" FromRole="tblGunler" ToRole="tblHvz" />
+        </EntityType>
+        <EntityType Name="tblHocalar">
+          <Key>
+            <PropertyRef Name="HocaID" />
+          </Key>
+          <Property Name="HocaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HocaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HocaSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HocaMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="poolBolumDers" Relationship="WhereAUModel.FK_poolBolumDers_tblHocalar" FromRole="tblHocalar" ToRole="poolBolumDers" />
+        </EntityType>
+        <EntityType Name="tblHvz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FGunID" Type="Int32" Nullable="false" />
+          <Property Name="BaslangicSaati" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="FpoolBolumdersID" Type="Int32" />
+          <Property Name="BitisSaati" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="poolBolumDers" Relationship="WhereAUModel.FK_tblHvz_poolBolumDers" FromRole="tblHvz" ToRole="poolBolumDers" />
+          <NavigationProperty Name="tblGunler" Relationship="WhereAUModel.FK_tblHvz_tblGunler" FromRole="tblHvz" ToRole="tblGunler" />
+        </EntityType>
+        <EntityType Name="tblOkullar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OkulName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="poolOkulFakulte" Relationship="WhereAUModel.FK_poolOkulFakulte_tblOkullar" FromRole="tblOkullar" ToRole="poolOkulFakulte" />
+        </EntityType>
+        <Association Name="FK_poolBolumDers_poolFakulteBolum">
+          <End Type="WhereAUModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="1" />
+          <End Type="WhereAUModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolFakulteBolum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FpoolfakultebolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolBolumDers_tblDersler">
+          <End Type="WhereAUModel.tblDersler" Role="tblDersler" Multiplicity="1" />
+          <End Type="WhereAUModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDersler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FDersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolBolumDers_tblHocalar">
+          <End Type="WhereAUModel.tblHocalar" Role="tblHocalar" Multiplicity="0..1" />
+          <End Type="WhereAUModel.poolBolumDers" Role="poolBolumDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHocalar">
+              <PropertyRef Name="HocaID" />
+            </Principal>
+            <Dependent Role="poolBolumDers">
+              <PropertyRef Name="FHocaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHvz_poolBolumDers">
+          <End Type="WhereAUModel.poolBolumDers" Role="poolBolumDers" Multiplicity="0..1" />
+          <End Type="WhereAUModel.tblHvz" Role="tblHvz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolBolumDers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHvz">
+              <PropertyRef Name="FpoolBolumdersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolFakulteBolum_poolOkulFakulte">
+          <End Type="WhereAUModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="1" />
+          <End Type="WhereAUModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poolOkulFakulte">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolFakulteBolum">
+              <PropertyRef Name="FpoolokulfalulteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolFakulteBolum_tblBolumler">
+          <End Type="WhereAUModel.tblBolumler" Role="tblBolumler" Multiplicity="1" />
+          <End Type="WhereAUModel.poolFakulteBolum" Role="poolFakulteBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolumler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolFakulteBolum">
+              <PropertyRef Name="FBolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolOkulFakulte_tblFakulteler">
+          <End Type="WhereAUModel.tblFakulteler" Role="tblFakulteler" Multiplicity="1" />
+          <End Type="WhereAUModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulteler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolOkulFakulte">
+              <PropertyRef Name="FFakulteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poolOkulFakulte_tblOkullar">
+          <End Type="WhereAUModel.tblOkullar" Role="tblOkullar" Multiplicity="1" />
+          <End Type="WhereAUModel.poolOkulFakulte" Role="poolOkulFakulte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOkullar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="poolOkulFakulte">
+              <PropertyRef Name="FOkulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHvz_tblGunler">
+          <End Type="WhereAUModel.tblGunler" Role="tblGunler" Multiplicity="1" />
+          <End Type="WhereAUModel.tblHvz" Role="tblHvz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGunler">
+              <PropertyRef Name="GunlerID" />
+            </Principal>
+            <Dependent Role="tblHvz">
+              <PropertyRef Name="FGunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WhereAUModelStoreContainer" CdmEntityContainer="WhereAUEntities">
+          <EntitySetMapping Name="poolBolumDers">
+            <EntityTypeMapping TypeName="WhereAUModel.poolBolumDers">
+              <MappingFragment StoreEntitySet="poolBolumDers">
+                <ScalarProperty Name="FHocaID" ColumnName="FHocaID" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="Sınıf" ColumnName="Sınıf" />
+                <ScalarProperty Name="FDersID" ColumnName="FDersID" />
+                <ScalarProperty Name="FpoolfakultebolumID" ColumnName="FpoolfakultebolumID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="poolFakulteBolum">
+            <EntityTypeMapping TypeName="WhereAUModel.poolFakulteBolum">
+              <MappingFragment StoreEntitySet="poolFakulteBolum">
+                <ScalarProperty Name="FBolumID" ColumnName="FBolumID" />
+                <ScalarProperty Name="FpoolokulfalulteID" ColumnName="FpoolokulfalulteID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="poolOkulFakulte">
+            <EntityTypeMapping TypeName="WhereAUModel.poolOkulFakulte">
+              <MappingFragment StoreEntitySet="poolOkulFakulte">
+                <ScalarProperty Name="FOkulID" ColumnName="FOkulID" />
+                <ScalarProperty Name="FFakulteID" ColumnName="FFakulteID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdminLogin">
+            <EntityTypeMapping TypeName="WhereAUModel.tblAdminLogin">
+              <MappingFragment StoreEntitySet="tblAdminLogin">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBolumler">
+            <EntityTypeMapping TypeName="WhereAUModel.tblBolumler">
+              <MappingFragment StoreEntitySet="tblBolumler">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDersler">
+            <EntityTypeMapping TypeName="WhereAUModel.tblDersler">
+              <MappingFragment StoreEntitySet="tblDersler">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFakulteler">
+            <EntityTypeMapping TypeName="WhereAUModel.tblFakulteler">
+              <MappingFragment StoreEntitySet="tblFakulteler">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGunler">
+            <EntityTypeMapping TypeName="WhereAUModel.tblGunler">
+              <MappingFragment StoreEntitySet="tblGunler">
+                <ScalarProperty Name="Gunler" ColumnName="Gunler" />
+                <ScalarProperty Name="GunlerID" ColumnName="GunlerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHocalar">
+            <EntityTypeMapping TypeName="WhereAUModel.tblHocalar">
+              <MappingFragment StoreEntitySet="tblHocalar">
+                <ScalarProperty Name="HocaMail" ColumnName="HocaMail" />
+                <ScalarProperty Name="HocaSurname" ColumnName="HocaSurname" />
+                <ScalarProperty Name="HocaName" ColumnName="HocaName" />
+                <ScalarProperty Name="HocaID" ColumnName="HocaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHvz">
+            <EntityTypeMapping TypeName="WhereAUModel.tblHvz">
+              <MappingFragment StoreEntitySet="tblHvz">
+                <ScalarProperty Name="BitisSaati" ColumnName="BitisSaati" />
+                <ScalarProperty Name="FpoolBolumdersID" ColumnName="FpoolBolumdersID" />
+                <ScalarProperty Name="BaslangicSaati" ColumnName="BaslangicSaati" />
+                <ScalarProperty Name="FGunID" ColumnName="FGunID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOkullar">
+            <EntityTypeMapping TypeName="WhereAUModel.tblOkullar">
+              <MappingFragment StoreEntitySet="tblOkullar">
+                <ScalarProperty Name="OkulName" ColumnName="OkulName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

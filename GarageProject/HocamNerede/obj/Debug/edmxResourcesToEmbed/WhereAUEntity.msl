@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WhereAUModelStoreContainer" CdmEntityContainer="WhereAUEntities">
+    <EntitySetMapping Name="poolBolumDers">
+      <EntityTypeMapping TypeName="WhereAUModel.poolBolumDers">
+        <MappingFragment StoreEntitySet="poolBolumDers">
+          <ScalarProperty Name="FHocaID" ColumnName="FHocaID" />
+          <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+          <ScalarProperty Name="Sınıf" ColumnName="Sınıf" />
+          <ScalarProperty Name="FDersID" ColumnName="FDersID" />
+          <ScalarProperty Name="FpoolfakultebolumID" ColumnName="FpoolfakultebolumID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="poolFakulteBolum">
+      <EntityTypeMapping TypeName="WhereAUModel.poolFakulteBolum">
+        <MappingFragment StoreEntitySet="poolFakulteBolum">
+          <ScalarProperty Name="FBolumID" ColumnName="FBolumID" />
+          <ScalarProperty Name="FpoolokulfalulteID" ColumnName="FpoolokulfalulteID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="poolOkulFakulte">
+      <EntityTypeMapping TypeName="WhereAUModel.poolOkulFakulte">
+        <MappingFragment StoreEntitySet="poolOkulFakulte">
+          <ScalarProperty Name="FOkulID" ColumnName="FOkulID" />
+          <ScalarProperty Name="FFakulteID" ColumnName="FFakulteID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAdminLogin">
+      <EntityTypeMapping TypeName="WhereAUModel.tblAdminLogin">
+        <MappingFragment StoreEntitySet="tblAdminLogin">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBolumler">
+      <EntityTypeMapping TypeName="WhereAUModel.tblBolumler">
+        <MappingFragment StoreEntitySet="tblBolumler">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDersler">
+      <EntityTypeMapping TypeName="WhereAUModel.tblDersler">
+        <MappingFragment StoreEntitySet="tblDersler">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFakulteler">
+      <EntityTypeMapping TypeName="WhereAUModel.tblFakulteler">
+        <MappingFragment StoreEntitySet="tblFakulteler">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGunler">
+      <EntityTypeMapping TypeName="WhereAUModel.tblGunler">
+        <MappingFragment StoreEntitySet="tblGunler">
+          <ScalarProperty Name="Gunler" ColumnName="Gunler" />
+          <ScalarProperty Name="GunlerID" ColumnName="GunlerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHocalar">
+      <EntityTypeMapping TypeName="WhereAUModel.tblHocalar">
+        <MappingFragment StoreEntitySet="tblHocalar">
+          <ScalarProperty Name="HocaMail" ColumnName="HocaMail" />
+          <ScalarProperty Name="HocaSurname" ColumnName="HocaSurname" />
+          <ScalarProperty Name="HocaName" ColumnName="HocaName" />
+          <ScalarProperty Name="HocaID" ColumnName="HocaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHvz">
+      <EntityTypeMapping TypeName="WhereAUModel.tblHvz">
+        <MappingFragment StoreEntitySet="tblHvz">
+          <ScalarProperty Name="BitisSaati" ColumnName="BitisSaati" />
+          <ScalarProperty Name="FpoolBolumdersID" ColumnName="FpoolBolumdersID" />
+          <ScalarProperty Name="BaslangicSaati" ColumnName="BaslangicSaati" />
+          <ScalarProperty Name="FGunID" ColumnName="FGunID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOkullar">
+      <EntityTypeMapping TypeName="WhereAUModel.tblOkullar">
+        <MappingFragment StoreEntitySet="tblOkullar">
+          <ScalarProperty Name="OkulName" ColumnName="OkulName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
